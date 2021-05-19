@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:myportfolio/screens/aboutme.dart';
 
 class BottomNavBarV2 extends StatefulWidget {
   @override
@@ -21,6 +22,7 @@ class _BottomNavBarV2State extends State<BottomNavBarV2> {
       backgroundColor: Colors.white.withAlpha(55),
       body: Stack(
         children: [
+          AboutMe(),
           Positioned(
             bottom: 0,
             left: 0,
@@ -37,10 +39,12 @@ class _BottomNavBarV2State extends State<BottomNavBarV2> {
                   Center(
                     heightFactor: 0.6,
                     child: FloatingActionButton(
-                        backgroundColor: Colors.orange,
-                        child: Icon(Icons.shopping_basket),
+                        backgroundColor: Colors.blue,
+                        child: Icon(Icons.home),
                         elevation: 0.1,
-                        onPressed: () {}),
+                        onPressed: () {
+                          setBottomBarIndex(2);
+                        }),
                   ),
                   Container(
                     width: size.width,
@@ -48,20 +52,27 @@ class _BottomNavBarV2State extends State<BottomNavBarV2> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        IconButton(
-                          icon: ImageIcon(
-                            AssetImage(
-                              'assets/about.png',
+                        Transform.scale(
+                          scale: 10,
+                          child: IconButton(
+                            icon: ImageIcon(
+                              AssetImage(
+                                'assets/about.png',
+                              ),
+                              color: currentIndex == 0
+                                  ? Colors.blue
+                                  : Colors.black,
                             ),
-                            color:
-                                currentIndex == 0 ? Colors.blue : Colors.black,
+                            onPressed: () {
+                              setBottomBarIndex(0);
+                            },
+                            splashColor: Colors.white,
+                            iconSize: 4,
                           ),
-                          onPressed: () {
-                            setBottomBarIndex(0);
-                          },
-                          splashColor: Colors.white,
                         ),
-                        IconButton(
+                        Transform.scale(
+                          scale: 10,
+                          child: IconButton(
                             icon: ImageIcon(
                               AssetImage('assets/skills.png'),
                               color: currentIndex == 1
@@ -70,11 +81,16 @@ class _BottomNavBarV2State extends State<BottomNavBarV2> {
                             ),
                             onPressed: () {
                               setBottomBarIndex(1);
-                            }),
+                            },
+                            iconSize: 4,
+                          ),
+                        ),
                         Container(
                           width: size.width * 0.20,
                         ),
-                        IconButton(
+                        Transform.scale(
+                          scale: 10,
+                          child: IconButton(
                             icon: ImageIcon(
                               AssetImage('assets/projects.png'),
                               color: currentIndex == 2
@@ -82,9 +98,14 @@ class _BottomNavBarV2State extends State<BottomNavBarV2> {
                                   : Colors.black,
                             ),
                             onPressed: () {
-                              setBottomBarIndex(2);
-                            }),
-                        IconButton(
+                              setBottomBarIndex(3);
+                            },
+                            iconSize: 4,
+                          ),
+                        ),
+                        Transform.scale(
+                          scale: 10,
+                          child: IconButton(
                             icon: ImageIcon(
                               AssetImage('assets/blog.png'),
                               color: currentIndex == 3
@@ -92,8 +113,11 @@ class _BottomNavBarV2State extends State<BottomNavBarV2> {
                                   : Colors.black,
                             ),
                             onPressed: () {
-                              setBottomBarIndex(3);
-                            }),
+                              setBottomBarIndex(4);
+                            },
+                            iconSize: 4,
+                          ),
+                        ),
                       ],
                     ),
                   )
